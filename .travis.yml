@@ -45,7 +45,7 @@ install:
     	brew outdated openssl || brew upgrade openssl
     	brew install python
     fi
-  - "pip install -r requirements.txt"
+  - "pip install -src .. -r requirements.txt"
 
 before_script:
   - "openssl version -a"
@@ -55,6 +55,12 @@ script:
 
 after_success:
   - coveralls
+  - |
+    if [[ $TRAVIS_OS_NAME == "osx" ]]
+    then
+        pip install -t ../release git+https://github.com/mitmproxy/release.git
+        ../release/rtool osxbin -p mitmproxy
+    fi
 
 notifications:
   irc:
