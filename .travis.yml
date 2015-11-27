@@ -58,7 +58,7 @@ after_success:
   - |
     if [[ $TRAVIS_OS_NAME == "osx" ]]
     then
-        pip install -t ../release git+https://github.com/mitmproxy/release.git
+        git clone https://github.com/mitmproxy/release.git ../release
         ../release/rtool osxbin -p mitmproxy
     fi
 
