@@ -45,7 +45,7 @@ install:
     	brew outdated openssl || brew upgrade openssl
     	brew install python
     fi
-  - "pip install -src .. -r requirements.txt"
+  - "pip install --src .. -r requirements.txt"
 
 before_script:
   - "openssl version -a"
