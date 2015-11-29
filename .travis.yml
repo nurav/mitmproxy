@@ -60,7 +60,7 @@ after_success:
     then
         git clone https://github.com/mitmproxy/release.git ../release
         pip install -e ../release
-        ../release/rtool -p mitmproxy bdist
+        python ../release/rtool.py -p mitmproxy bdist
     fi
 
 notifications:
