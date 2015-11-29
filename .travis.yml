@@ -62,6 +62,10 @@ after_success:
         git clone https://github.com/mitmproxy/release.git ../release
         pip install -e ../release
         python ../release/rtool.py -p mitmproxy bdist
+        for f in ../release/dist/*
+        do
+          curl -u $SNAPSHOT_AUTH --hostpubmd5 $SNAPSHOT_PUBKEY -T $f sftp://$SNAPSHOT_HOST/
+        done
     fi
 
 notifications:
